@@ -1,6 +1,0 @@
-.venv/
-.gitattributes
-requirements.txt
-__pycache__/
-*.pyc
-.gitignore
