@@ -91,6 +91,7 @@ def criar_gitignore():
     com regras para ignorar arquivos e pastas que não devem ir para o GitHub.
     """
     conteudo = [
+        ".gitignore",
         ".venv/",
         ".gitattributes",
         "requirements.txt",
