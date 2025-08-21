@@ -15,7 +15,8 @@ import sys
 import os
 
 # Lista de bibliotecas a serem instaladas
-lista_de_bibliotecas = ["numpy", "pandas", "matplotlib", "seaborn", "nltk", "Spacy", "scikit-learn", "tensorflow"]
+lista_de_bibliotecas = ["numpy"]
+#lista_de_bibliotecas = ["numpy", "pandas", "matplotlib", "seaborn", "nltk", "Spacy", "scikit-learn", "tensorflow"]
 # Nome da pasta do ambiente virtual
 pasta_venv = ".venv"
 
@@ -57,10 +58,10 @@ def criar_e_instalar_bibliotecas(bibliotecas):
         print("Todas as bibliotecas foram instaladas no ambiente virtual.")
 
         # Geração do arquivo requirements.txt dentro da pasta do projeto
-        arquivo_requirements = "requirements.txt"
-        subprocess.check_call([pip_executavel, "freeze", ">", arquivo_requirements], shell=True)
-        print(f"\nArquivo {arquivo_requirements} gerado.")
-        print(f"Para instalar as dependências em outro ambiente, use: pip install -r {arquivo_requirements}")
+        arquivo_requisitos  = "requirements.txt"
+        subprocess.check_call([pip_executavel, "freeze", ">", arquivo_requisitos], shell=True)
+        print(f"\nArquivo {arquivo_requisitos} gerado.")
+        print(f"Para instalar as dependências em outro ambiente, use: pip install -r {arquivo_requisitos}")
 
         print("\nConfiguração concluída!")
         print("Para usar as bibliotecas, ative o ambiente virtual:")
@@ -80,9 +81,38 @@ def criar_e_instalar_bibliotecas(bibliotecas):
             print("Em sistemas Unix, você precisa usar o comando 'source .venv/bin/activate' no seu terminal.")
 
     except subprocess.CalledProcessError as e:
-        print(f"Erro ao instalar uma biblioteca ou gerar {arquivo_requirements}: {e}")
+        print(f"Erro ao instalar uma biblioteca ou gerar {arquivo_requisitos}: {e}")
     except FileNotFoundError:
         print(f"Erro: O executável do pip no ambiente virtual ('{pip_executavel}') não foi encontrado.")
 
+def criar_gitignore():
+    """
+    Cria o arquivo .gitignore na pasta raiz do projeto
+    com regras para ignorar arquivos e pastas que não devem ir para o GitHub.
+    """
+    conteudo = [
+        ".venv/",
+        ".gitattributes",
+        "requirements.txt",
+        "__pycache__/",
+        "*.pyc"
+    ]
+
+    nome_arquivo = ".gitignore"
+
+    
+    if not os.path.exists(nome_arquivo):
+        try:
+            with open(nome_arquivo, "w", encoding="utf-8") as f:
+                f.write("\n".join(conteudo))
+            print(f"Arquivo {nome_arquivo} criado com sucesso.")
+        except Exception as e:
+            print(f"Erro ao criar {nome_arquivo}: {e}")
+    else:
+        print(f"Arquivo {nome_arquivo} já existe. Nenhuma alteração feita.")
+
+
 if __name__ == "__main__":
+    criar_gitignore()
     criar_e_instalar_bibliotecas(lista_de_bibliotecas)
+   
