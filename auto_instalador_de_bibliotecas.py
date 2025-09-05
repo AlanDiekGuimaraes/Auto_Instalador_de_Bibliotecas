@@ -96,7 +96,9 @@ def criar_gitignore():
         ".gitattributes",
         "requirements.txt",
         "__pycache__/",
-        "*.pyc"
+        "*.pyc",
+        "auto_instalador_de_bibliotecas.py",
+        ".vscode"
     ]
 
     nome_arquivo = ".gitignore"
