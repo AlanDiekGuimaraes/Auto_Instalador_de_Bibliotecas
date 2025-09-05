@@ -1,2 +1,2 @@
 # Auto_Instalador_de_Bibliotecas
-Auto instalador de bibliotes Python
+Auto instalador de bibliotecas Python
